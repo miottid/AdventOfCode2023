@@ -2,9 +2,11 @@ import Foundation
 
 private let textDigits = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
-public class Day01: Advent {
+public class Day01: Challenge {
+    override public var name: String { "--- Day 1: Trebuchet?! ---" }
+
     override public func part1() -> Int {
-        return input.compactMap {
+        return lines.compactMap {
             let numbers = $0.compactMap(\.wholeNumberValue)
             guard let first = numbers.first, let last = numbers.last,
                   let value = Int("\(first)\(last)")
@@ -16,7 +18,7 @@ public class Day01: Advent {
     }
 
     override public func part2() -> Int {
-        return input.compactMap {
+        return lines.compactMap {
             var numberPositions = [(Int, String.Index)]()
             for (i, d) in textDigits.enumerated() {
                 var position = $0.startIndex

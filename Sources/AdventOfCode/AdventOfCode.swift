@@ -10,17 +10,16 @@ struct AdventOfCode: ParsableCommand {
     var part: Int?
 
     mutating func run() throws {
-        let advents = [Day01.self, Day02.self]
+        let adventTypes = [Day01.self, Day02.self, Day03.self]
         if let day = day {
-            let advent = advents[day - 1]
-            print("Day \(day) –", terminator: " ")
-            let input = getAdventInput(String(format: "day%02d", day))
-            runAdvent(advent.init(input))
+            let adventType = adventTypes[day - 1]
+            let advent = adventType.init(getAdventInput(String(format: "day%02d", day)))
+            runAdvent(advent)
         } else {
-            for (i, advent) in advents.enumerated() {
-                print("Day \(i + 1) –", terminator: " ")
-                let input = getAdventInput(String(format: "day%02d", i + 1))
-                runAdvent(advent.init(input))
+            for (i, adventType) in adventTypes.enumerated() {
+                let day = i + 1
+                let advent = adventType.init(getAdventInput(String(format: "day%02d", day)))
+                runAdvent(advent)
             }
         }
     }
@@ -33,20 +32,32 @@ struct AdventOfCode: ParsableCommand {
         if part == 2 || part == nil {
             parts.append("Part 2: \(advent.part2())")
         }
+        print(advent.name)
         print(parts.joined(separator: ", "))
+        print("")
     }
 }
 
 // MARK: Common
 
-public class Advent {
-    let input: [String]
-    public required init(_ input: [String]) {
-        self.input = input
+protocol Advent {
+    var name: String { get }
+    func part1() -> Int
+    func part2() -> Int
+}
+
+public class Challenge: Advent {
+    public var name: String {
+        return "Challenge"
     }
 
-    func part1() -> Int { fatalError("Must be overridden in subclass") }
-    func part2() -> Int { fatalError("Must be overridden in subclass") }
+    let lines: [String]
+    public required init(_ lines: [String]) {
+        self.lines = lines
+    }
+
+    public func part1() -> Int { fatalError("Must be overridden in subclass") }
+    public func part2() -> Int { fatalError("Must be overridden in subclass") }
 }
 
 public func getAdventInput(_ name: String) -> [String] {

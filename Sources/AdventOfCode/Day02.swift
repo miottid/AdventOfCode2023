@@ -1,6 +1,8 @@
 import Foundation
 
-public class Day02: Advent {
+public class Day02: Challenge {
+    override public var name: String { "--- Day 2: Cube Conundrum ---" }
+
     private struct Game {
         struct Round { let r: Int, g: Int, b: Int }
 
@@ -35,14 +37,14 @@ public class Day02: Advent {
     }
 
     override public func part1() -> Int {
-        return input.compactMap(Game.init).filter { game in
+        return lines.compactMap(Game.init).filter { game in
             game.rounds.filter { $0.r <= 12 && $0.g <= 13 && $0.b <= 14 }
                 .count == game.rounds.count
         }.map(\.id).reduce(0, +)
     }
 
     override public func part2() -> Int {
-        return input.compactMap(Game.init).compactMap { game -> Int? in
+        return lines.compactMap(Game.init).compactMap { game -> Int? in
             guard let r = game.rounds.max(by: { $0.r < $1.r })?.r,
                   let g = game.rounds.max(by: { $0.g < $1.g })?.g,
                   let b = game.rounds.max(by: { $0.b < $1.b })?.b
