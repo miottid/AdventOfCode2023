@@ -18,6 +18,7 @@ let package = Package(
                 .process("Resources/day01.txt"),
                 .process("Resources/day02.txt"),
                 .process("Resources/day03.txt"),
+                .process("Resources/day04.txt"),
             ]
         ),
         .testTarget(

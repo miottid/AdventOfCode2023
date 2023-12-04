@@ -4,7 +4,7 @@ private let symbolRegex = #/[^0-9\.]/#
 private let numberRegex = #/[0-9]+/#
 private let starRegex = #/\*/#
 
-public class Day03: Challenge {
+public final class Day03: Day {
     override public var name: String { "--- Day 3: Gear Ratios ---" }
 
     override public func part1() -> Int {

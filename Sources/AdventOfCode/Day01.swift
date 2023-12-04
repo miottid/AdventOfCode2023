@@ -2,7 +2,7 @@ import Foundation
 
 private let textDigits = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
 
-public class Day01: Challenge {
+public final class Day01: Day {
     override public var name: String { "--- Day 1: Trebuchet?! ---" }
 
     override public func part1() -> Int {

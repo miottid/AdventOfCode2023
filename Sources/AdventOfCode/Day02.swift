@@ -1,6 +1,6 @@
 import Foundation
 
-public class Day02: Challenge {
+public final class Day02: Day {
     override public var name: String { "--- Day 2: Cube Conundrum ---" }
 
     private struct Game {
@@ -9,7 +9,6 @@ public class Day02: Challenge {
         let id: Int, rounds: [Round]
 
         init?(from line: String) {
-            guard line.count > 0 else { return nil }
             let regex = #/Game ([0-9]+): (.+)/#
             guard let match = line.matches(of: regex).first else {
                 return nil
