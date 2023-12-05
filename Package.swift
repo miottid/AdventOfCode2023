@@ -2,6 +2,10 @@
 
 import PackageDescription
 
+let dependencies: [Target.Dependency] = [
+    .product(name: "ArgumentParser", package: "swift-argument-parser"),
+]
+
 let package = Package(
     name: "AdventOfCode2023",
     platforms: [.macOS(.v14)],
@@ -11,22 +15,12 @@ let package = Package(
     targets: [
         .executableTarget(
             name: "AdventOfCode",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-            ],
-            resources: [
-                .process("Resources/day01.txt"),
-                .process("Resources/day02.txt"),
-                .process("Resources/day03.txt"),
-                .process("Resources/day04.txt"),
-            ]
+            dependencies: dependencies,
+            resources: [.copy("Resources")]
         ),
         .testTarget(
             name: "AdventOfCodeTests",
-            dependencies: [
-                .product(name: "ArgumentParser", package: "swift-argument-parser"),
-                "AdventOfCode",
-            ]
+            dependencies: ["AdventOfCode"] + dependencies
         ),
     ]
 )

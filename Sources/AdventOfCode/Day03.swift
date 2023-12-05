@@ -4,10 +4,11 @@ private let symbolRegex = #/[^0-9\.]/#
 private let numberRegex = #/[0-9]+/#
 private let starRegex = #/\*/#
 
-public final class Day03: Day {
-    override public var name: String { "--- Day 3: Gear Ratios ---" }
+struct Day03: AdventDay {
+    var data: String
+    var lines: [String] { data.components(separatedBy: "\n") }
 
-    override public func part1() -> Int {
+    func part1() -> Any {
         var symbols = [Int: [Range<String.Index>]]()
         for (i, line) in lines.enumerated() {
             symbols[i] = line.ranges(of: symbolRegex)
@@ -30,7 +31,7 @@ public final class Day03: Day {
         }.reduce(0, +)
     }
 
-    override public func part2() -> Int {
+    func part2() -> Any {
         var gearRatios = 0
         let numberPositions = lines.map { $0.ranges(of: numberRegex) },
             starPositions = lines.map { $0.ranges(of: starRegex) }

@@ -1,7 +1,8 @@
 import Foundation
 
-public final class Day04: Day {
-    override public var name: String { "--- Day 4: Scratchcards ---" }
+struct Day04: AdventDay {
+    var data: String
+    var lines: [String] { data.components(separatedBy: "\n") }
 
     private func getMatchCount(in line: String) -> Int {
         let parts = line.components(separatedBy: " | ")
@@ -13,8 +14,8 @@ public final class Day04: Day {
         return Set(parts[0]).intersection(Set(parts[1])).count
     }
 
-    override public func part1() -> Int {
-        return lines.map {
+    func part1() -> Any {
+        lines.map {
             let matchingNumbers = getMatchCount(in: $0)
             var points = 0
             for i in 0 ..< matchingNumbers {
@@ -24,9 +25,8 @@ public final class Day04: Day {
         }.reduce(0, +)
     }
 
-    private var scratchcardsCache: [Int: [Int]] = [:]
-    private func getScratchcardsAt(_ lineIndex: Int) -> [Int] {
-        if let scratchcards = scratchcardsCache[lineIndex] {
+    private func getScratchcardsAt(_ lineIndex: Int, cache: inout [Int: [Int]]) -> [Int] {
+        if let scratchcards = cache[lineIndex] {
             return scratchcards
         }
         let matches = getMatchCount(in: lines[lineIndex])
@@ -34,19 +34,20 @@ public final class Day04: Day {
         for i in 0 ..< matches {
             let nextLineIndex = lineIndex + i + 1
             scratchcards[nextLineIndex] += 1
-            let copies = getScratchcardsAt(nextLineIndex)
+            let copies = getScratchcardsAt(nextLineIndex, cache: &cache)
             for (i, val) in copies.enumerated() {
                 scratchcards[i] += val
             }
         }
-        scratchcardsCache[lineIndex] = scratchcards
+        cache[lineIndex] = scratchcards
         return scratchcards
     }
 
-    override public func part2() -> Int {
+    func part2() -> Any {
+        var cache: [Int: [Int]] = [:]
         var scratchcards = [Int](repeating: 1, count: lines.count)
         for i in 0 ..< lines.count {
-            for (i, val) in getScratchcardsAt(i).enumerated() {
+            for (i, val) in getScratchcardsAt(i, cache: &cache).enumerated() {
                 scratchcards[i] += val
             }
         }

@@ -1,6 +1,8 @@
 import ArgumentParser
 import Foundation
 
+let allAdvents: [any AdventDay] = [Day01(), Day02(), Day03(), Day04()]
+
 @main
 struct AdventOfCode: ParsableCommand {
     @Option(name: .shortAndLong, help: "The day to run, if not provided all days will run.")
@@ -10,22 +12,16 @@ struct AdventOfCode: ParsableCommand {
     var part: Int?
 
     mutating func run() throws {
-        let adventTypes = [Day01.self, Day02.self, Day03.self, Day04.self]
-        if let day = day {
-            let adventType = adventTypes[day - 1]
-            let input = getDayInput(String(format: "day%02d", day))
-            let advent = adventType.init(input)
-            runAdvent(advent)
+        if let day {
+            runAdvent(allAdvents[day - 1])
         } else {
-            for (i, adventType) in adventTypes.enumerated() {
-                let input = getDayInput(String(format: "day%02d", i + 1))
-                let advent = adventType.init(input)
+            for advent in allAdvents {
                 runAdvent(advent)
             }
         }
     }
 
-    private func runAdvent(_ advent: Day) {
+    private func runAdvent(_ advent: any AdventDay) {
         var parts = [String]()
         if part == 1 || part == nil {
             let (part1, elapsed) = measureElapsedTime(advent.part1)
@@ -37,31 +33,12 @@ struct AdventOfCode: ParsableCommand {
             let elapsedFormat = String(format: "%.02f", elapsed)
             parts.append("Part 2: \(part2) (\(elapsedFormat)ms)")
         }
-        print(advent.name + "\n" + parts.joined(separator: "\n") + "\n")
+        print("-- Day \(String(format: "%02d", advent.day)) --")
+        print(parts.joined(separator: "\n"), terminator: "\n\n")
     }
 }
 
-// MARK: Common
-
-public class Day {
-    public var name: String { "Must be overriden in subclass" }
-    public let lines: [String]
-    public required init(_ lines: [String]) {
-        self.lines = lines
-    }
-
-    public func part1() -> Int { fatalError("Must be overridden in subclass") }
-    public func part2() -> Int { fatalError("Must be overridden in subclass") }
-}
-
-public func getDayInput(_ name: String) -> [String] {
-    let inputPath = Bundle.module.url(forResource: name, withExtension: "txt")!,
-        contents = try! String(contentsOf: inputPath)
-    return contents.trimmingCharacters(in: .whitespacesAndNewlines)
-        .components(separatedBy: .newlines)
-}
-
-private func measureElapsedTime(_ operation: () -> Int) -> (Int, Double) {
+private func measureElapsedTime(_ operation: () -> Any) -> (Any, Double) {
     let startTime = DispatchTime.now()
     let result = operation()
     let endTime = DispatchTime.now()
