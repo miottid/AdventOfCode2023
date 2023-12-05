@@ -4,6 +4,7 @@ import PackageDescription
 
 let dependencies: [Target.Dependency] = [
     .product(name: "ArgumentParser", package: "swift-argument-parser"),
+    .product(name: "Algorithms", package: "swift-algorithms"),
 ]
 
 let package = Package(
@@ -11,6 +12,7 @@ let package = Package(
     platforms: [.macOS(.v14)],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser", from: "1.2.3"),
+        .package(url: "https://github.com/apple/swift-algorithms", from: "1.2.0"),
     ],
     targets: [
         .executableTarget(

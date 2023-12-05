@@ -11,8 +11,8 @@ final class AdventOfCodeTests: XCTestCase {
         treb7uchet
         """
 
-        let day01 = Day01(data: demo1)
-        XCTAssertEqual(day01.part1() as? Int, 142)
+        let day01demo = Day01(data: demo1)
+        XCTAssertEqual(day01demo.part1() as? Int, 142)
 
         let demo2 = """
         two1nine
@@ -41,9 +41,9 @@ final class AdventOfCodeTests: XCTestCase {
         Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green
         """
 
-        let day02 = Day02(data: demo)
-        XCTAssertEqual(day02.part1() as? Int, 8)
-        XCTAssertEqual(day02.part2() as? Int, 2286)
+        let day02demo = Day02(data: demo)
+        XCTAssertEqual(day02demo.part1() as? Int, 8)
+        XCTAssertEqual(day02demo.part2() as? Int, 2286)
 
         let day02Prod = Day02()
         XCTAssertEqual(day02Prod.part1() as? Int, 2406)
@@ -64,9 +64,9 @@ final class AdventOfCodeTests: XCTestCase {
         .664.598..
         """
 
-        let day03 = Day03(data: demo)
-        XCTAssertEqual(day03.part1() as? Int, 4361)
-        XCTAssertEqual(day03.part2() as? Int, 467_835)
+        let day03demo = Day03(data: demo)
+        XCTAssertEqual(day03demo.part1() as? Int, 4361)
+        XCTAssertEqual(day03demo.part2() as? Int, 467_835)
 
         let day03Prod = Day03()
         XCTAssertEqual(day03Prod.part1() as? Int, 529_618)
@@ -83,12 +83,58 @@ final class AdventOfCodeTests: XCTestCase {
         Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
         """
 
-        let day04 = Day04(data: demo)
-        XCTAssertEqual(day04.part1() as? Int, 13)
-        XCTAssertEqual(day04.part2() as? Int, 30)
+        let day04demo = Day04(data: demo)
+        XCTAssertEqual(day04demo.part1() as? Int, 13)
+        XCTAssertEqual(day04demo.part2() as? Int, 30)
 
         let day04Prod = Day04()
         XCTAssertEqual(day04Prod.part1() as? Int, 20855)
         XCTAssertEqual(day04Prod.part2() as? Int, 5_489_600)
+    }
+
+    func test_day05() {
+        let demo = """
+        seeds: 79 14 55 13
+
+        seed-to-soil map:
+        50 98 2
+        52 50 48
+
+        soil-to-fertilizer map:
+        0 15 37
+        37 52 2
+        39 0 15
+
+        fertilizer-to-water map:
+        49 53 8
+        0 11 42
+        42 0 7
+        57 7 4
+
+        water-to-light map:
+        88 18 7
+        18 25 70
+
+        light-to-temperature map:
+        45 77 23
+        81 45 19
+        68 64 13
+
+        temperature-to-humidity map:
+        0 69 1
+        1 0 69
+
+        humidity-to-location map:
+        60 56 37
+        56 93 4
+        """
+
+        let day05demo = Day05(data: demo)
+        XCTAssertEqual(day05demo.part1() as? Int, 35)
+        XCTAssertEqual(day05demo.part2() as? Int, 46)
+
+        let day05Prod = Day05()
+        XCTAssertEqual(day05Prod.part1() as? Int, 251_346_198)
+        XCTAssertEqual(day05Prod.part2() as? Int, 72_263_011)
     }
 }
