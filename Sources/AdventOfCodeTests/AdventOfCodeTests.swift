@@ -137,4 +137,19 @@ final class AdventOfCodeTests: XCTestCase {
         XCTAssertEqual(day05Prod.part1() as? Int, 251_346_198)
         XCTAssertEqual(day05Prod.part2() as? Int, 72_263_011)
     }
+
+    func test_day06() {
+        let demo = """
+        Time:      7  15   30
+        Distance:  9  40  200
+        """
+
+        let day06demo = Day06(data: demo)
+        XCTAssertEqual(day06demo.part1() as? Int, 288)
+        XCTAssertEqual(day06demo.part2() as? Int, 71503)
+
+        let day06Prod = Day06()
+        XCTAssertEqual(day06Prod.part1() as? Int, 781_200)
+        XCTAssertEqual(day06Prod.part2() as? Int, 49_240_091)
+    }
 }
