@@ -8,26 +8,30 @@ For example, `swift run AdventOfCode -d 2 -p 1` will run part one of the day two
 
 ```
 -- Day 01 --
-Part 1: 55123 (6.48ms)
-Part 2: 55260 (22.22ms)
+Part 1: 55123 (2.37ms)
+Part 2: 55260 (24.25ms)
 
 -- Day 02 --
-Part 1: 2406 (60.62ms)
-Part 2: 78375 (63.10ms)
+Part 1: 2406 (49.55ms)
+Part 2: 78375 (46.08ms)
 
 -- Day 03 --
-Part 1: 529618 (23.79ms)
-Part 2: 77509019 (173.29ms)
+Part 1: 529618 (16.33ms)
+Part 2: 77509019 (179.05ms)
 
 -- Day 04 --
-Part 1: 20855 (7.35ms)
-Part 2: 5489600 (128.11ms)
+Part 1: 20855 (4.21ms)
+Part 2: 5489600 (101.25ms)
 
 -- Day 05 --
-Part 1: 251346198 (0.25ms)
-Part 2: 72263011 (0.98ms)
+Part 1: 251346198 (0.00ms)
+Part 2: 72263011 (0.08ms)
 
 -- Day 06 --
-Part 1: 781200 (0.06ms)
+Part 1: 781200 (0.03ms)
 Part 2: 49240091 (0.02ms)
+
+-- Day 07 --
+Part 1: 254024898 (78.28ms)
+Part 2: 254115617 (23969.47ms)
 ```
