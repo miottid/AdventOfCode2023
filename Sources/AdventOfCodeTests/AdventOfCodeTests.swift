@@ -168,6 +168,26 @@ final class AdventOfCodeTests: XCTestCase {
 
         let day07 = Day07()
         XCTAssertEqual(day07.part1() as? Int, 254_024_898)
-        XCTAssertEqual(day07.part1() as? Int, 254_115_617)
+        XCTAssertEqual(day07.part2() as? Int, 254_115_617)
+    }
+
+    func test_day08() {
+        let demo = """
+        RL
+
+        AAA = (BBB, CCC)
+        BBB = (DDD, EEE)
+        CCC = (ZZZ, GGG)
+        DDD = (DDD, DDD)
+        EEE = (EEE, EEE)
+        GGG = (GGG, GGG)
+        ZZZ = (ZZZ, ZZZ)
+        """
+
+        let day08demo = Day08(data: demo)
+        XCTAssertEqual(day08demo.part1() as? Int, 2)
+
+        let day08 = Day08()
+        XCTAssertEqual(day08.part1() as? Int, 19637)
     }
 }
